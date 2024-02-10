@@ -93,7 +93,7 @@ public class ArtistaResource {
 	
 	private Artista dtoToEntity(ArtistaDTO d) {
 		return Artista.builder()
-//				.id(d.getId())
+				.id(d.getId())
 				.nome(d.getNome())
 				.nacionalidade(d.getNacionalidade())
 				.urlSite(d.getUrlSite())

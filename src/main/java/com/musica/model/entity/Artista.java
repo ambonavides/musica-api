@@ -1,12 +1,16 @@
 package com.musica.model.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,8 +32,8 @@ public class Artista implements Serializable {
 	private static final long serialVersionUID = -7464941624043474089L;
 
 	@Id
-	@Column(name ="id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name ="id_artista")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "nome", nullable = false)
@@ -43,5 +47,9 @@ public class Artista implements Serializable {
 	
 	@Column(name = "imagem_perfil", nullable = false)
 	private String imagemPerfil;
+	
+	@OneToMany(orphanRemoval=false)
+	@JoinColumn(name = "id")
+	private Set<Album> albuns = new HashSet<Album>(0);
 
 }

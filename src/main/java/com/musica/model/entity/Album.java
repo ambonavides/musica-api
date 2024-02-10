@@ -2,15 +2,13 @@ package com.musica.model.entity;
 
 import java.io.Serializable;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,7 +30,7 @@ public class Album implements Serializable {
 	
 	@Id
 	@Column(name ="id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "titulo", nullable = false)
@@ -44,13 +42,13 @@ public class Album implements Serializable {
 	@Column(name = "imagem_capa", nullable = false)
 	private String imagemCapa;
 	
-	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_musica")
-	private Musica idMusica;
-	
-	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "id_artista")
-	private Artista idArtista;	
+	private Artista artista;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "id_musica")
+	private Musica musica;
 	
 	@Column(name = "faixa", nullable = false)
 	private int faixa;

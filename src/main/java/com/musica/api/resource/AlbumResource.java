@@ -105,8 +105,8 @@ public class AlbumResource {
 				.titulo(d.getTitulo())
 				.anoLancamento(d.getAnoLancamento())
 				.imagemCapa(d.getImagemCapa())
-				.idArtista(artista)
-				.idMusica(musica)
+				.artista(artista)
+				.musica(musica)
 				.faixa(Integer.valueOf(d.getFaixa()))
 				.build();
 	}
